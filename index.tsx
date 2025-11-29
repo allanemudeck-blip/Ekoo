@@ -328,7 +328,7 @@ const Portfolio = () => {
                "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=500"
              ].map((src, i) => (
                <div key={i} className="group relative overflow-hidden rounded-lg h-48">
-                 <img src={src} alt="Truck" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+                 <img loading="lazy" src={src} alt="Truck Logistics" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                    <span className="text-white font-semibold">Logistics</span>
                  </div>
@@ -345,17 +345,17 @@ const Portfolio = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-slate-50 rounded-lg p-4 text-center hover:shadow-lg transition-shadow">
-              <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=600" alt="Luxury Car" className="w-full h-48 object-cover rounded-md mb-4" />
+              <img loading="lazy" src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=600" alt="Luxury Car - Toyota Land Cruiser" className="w-full h-48 object-cover rounded-md mb-4" />
               <h4 className="font-bold text-lg">Toyota Land Cruiser</h4>
               <p className="text-sm text-gray-500">Clearance & Delivery</p>
             </div>
             <div className="bg-slate-50 rounded-lg p-4 text-center hover:shadow-lg transition-shadow">
-              <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=600" alt="Luxury Car" className="w-full h-48 object-cover rounded-md mb-4" />
+              <img loading="lazy" src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=600" alt="Luxury Car - Mercedes Benz" className="w-full h-48 object-cover rounded-md mb-4" />
               <h4 className="font-bold text-lg">Mercedes Benz</h4>
               <p className="text-sm text-gray-500">Import Services</p>
             </div>
             <div className="bg-slate-50 rounded-lg p-4 text-center hover:shadow-lg transition-shadow">
-              <img src="https://images.unsplash.com/photo-1555215695-3004980adade?auto=format&fit=crop&q=80&w=600" alt="Luxury Car" className="w-full h-48 object-cover rounded-md mb-4" />
+              <img loading="lazy" src="https://images.unsplash.com/photo-1555215695-3004980adade?auto=format&fit=crop&q=80&w=600" alt="Luxury Car - BMW X Series" className="w-full h-48 object-cover rounded-md mb-4" />
               <h4 className="font-bold text-lg">BMW X Series</h4>
               <p className="text-sm text-gray-500">Freight Forwarding</p>
             </div>
@@ -369,7 +369,7 @@ const Portfolio = () => {
 const TeamMember: React.FC<{ name: string, role: string, bio: string, image: string }> = ({ name, role, bio, image }) => (
   <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
     <div className="relative h-64 overflow-hidden">
-      <img src={image} alt={name} className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500" />
+      <img loading="lazy" src={image} alt={name} className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500" />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
       <div className="absolute bottom-4 left-4 text-white">
         <h4 className="text-xl font-bold">{name}</h4>
