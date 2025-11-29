@@ -304,7 +304,7 @@ const Portfolio = () => {
           <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16">
             <div className="p-6">
                 <div className="text-5xl font-bold text-amber-500 mb-2">500+</div>
                 <div className="text-gray-300">Happy Clients</div>
@@ -322,12 +322,67 @@ const Portfolio = () => {
                 <div className="text-gray-300">Support Available</div>
             </div>
         </div>
+
+        <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Our Fleet & Cargo Gallery</h3>
+            <p className="text-gray-400">A glimpse into our operations and the cargo we handle.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+           {/* Item 1: Containers */}
+           <div className="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+              <img 
+                src="https://images.unsplash.com/photo-1494412574643-35d3d4018519?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Shipping Containers" 
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 flex flex-col justify-end p-6">
+                  <h4 className="text-xl font-bold text-white">Shipping Containers</h4>
+                  <p className="text-amber-400 text-sm">Secure Global Freight</p>
+              </div>
+           </div>
+
+           {/* Item 2: Long Cars/Trucks */}
+           <div className="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+              <img 
+                src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Long Trucks and Heavy Carriers" 
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 flex flex-col justify-end p-6">
+                  <h4 className="text-xl font-bold text-white">Heavy Transport & Long Cars</h4>
+                  <p className="text-amber-400 text-sm">Logistics Fleet</p>
+              </div>
+           </div>
+
+           {/* Item 3: Small Modern Cars */}
+           <div className="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+              <img 
+                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Small Modern Cars" 
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 flex flex-col justify-end p-6">
+                  <h4 className="text-xl font-bold text-white">Modern Car Imports</h4>
+                  <p className="text-amber-400 text-sm">Efficient & Reliable</p>
+              </div>
+           </div>
+        </div>
       </div>
     </section>
   );
 };
 
 const Team = () => {
+  // IMAGE CONFIGURATION: 
+  // IMPORTANT: You must rename your uploaded image files to match these names exactly
+  // and place them in the public folder for them to show up.
+  const teamPhotos = {
+    manager: "onyai-peter.jpg",      // The photo of Onyai Peter in orange shirt
+    operations: "team-ops.jpg",      // The photo of the two men
+    field: "team-field.jpg"          // The photo with the children
+  };
+
   return (
     <section id="team" className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -340,42 +395,50 @@ const Team = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Member 1 - Management */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
-            <div className="h-72 overflow-hidden bg-white flex items-center justify-center p-8 border-b border-slate-100">
-               <Logo className="w-full h-full transform group-hover:scale-105 transition-transform duration-500" />
+            <div className="h-80 overflow-hidden bg-slate-200">
+               {/* Using the config variable for easier updates */}
+               <img 
+                 src={teamPhotos.manager}
+                 alt="ONYAI PETER - Managing Director (Orange Shirt)" 
+                 className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-500"
+               />
             </div>
-            <div className="p-6 text-center">
-              <h3 className="text-xl font-bold text-slate-900">ONYAI PETER</h3>
+            <div className="p-6 text-center relative">
+               <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full border-4 border-white bg-white shadow-md flex items-center justify-center overflow-hidden">
+                   <Logo className="w-16 h-16" />
+               </div>
+              <h3 className="text-xl font-bold text-slate-900 mt-8">ONYAI PETER</h3>
               <p className="text-amber-600 font-medium">MANAGING DIRECTOR</p>
             </div>
           </div>
 
           {/* Member 2 - Operations */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
-            <div className="h-72 overflow-hidden">
+            <div className="h-80 overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Operations" 
+                src={teamPhotos.operations}
+                alt="Operations Team (Two Men)" 
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
             </div>
             <div className="p-6 text-center">
-              <h3 className="text-xl font-bold text-slate-900">Operations Manager</h3>
+              <h3 className="text-xl font-bold text-slate-900">Operations Team</h3>
               <p className="text-amber-600 font-medium">Logistics & Supply</p>
             </div>
           </div>
 
           {/* Member 3 - Clearing */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
-            <div className="h-72 overflow-hidden">
+            <div className="h-80 overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Clearing Agent" 
+                src={teamPhotos.field}
+                alt="Field Team (Photo with Children)" 
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
             </div>
             <div className="p-6 text-center">
               <h3 className="text-xl font-bold text-slate-900">Field Team</h3>
-              <p className="text-amber-600 font-medium">Senior Clearing Agent</p>
+              <p className="text-amber-600 font-medium">Senior Clearing Agents</p>
             </div>
           </div>
         </div>
