@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ekoo-two.vercel.app/sitemap.xml
