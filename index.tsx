@@ -122,6 +122,7 @@ const Hero = () => {
         <img 
           src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
           alt="Logistics Background" 
+          loading="lazy"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-slate-900/80"></div>
@@ -183,21 +184,29 @@ const About = () => {
             </div>
 
             <div className="bg-slate-50 p-6 rounded-lg border-l-4 border-slate-900">
-              <h4 className="font-bold text-lg text-slate-900 mb-2">Our Motto</h4>
-              <p className="text-gray-700 italic">“We Make Your Dream Work.”</p>
+              <h4 className="font-bold text-lg text-slate-900 mb-2">Our Vision</h4>
+              <p className="text-gray-700">To be the trusted leader in logistics, clearing, and business consultancy in East Africa and beyond.</p>
+            </div>
+
+            <div className="pt-4">
+              {features.map((feature, index) => (
+                <div key={index} className="flex items-center mb-3">
+                  <CheckCircle className="text-amber-500 mr-3" size={20} />
+                  <span className="text-gray-700 font-medium">{feature}</span>
+                </div>
+              ))}
             </div>
           </div>
-
-          <div className="bg-slate-900 p-8 rounded-2xl text-white shadow-xl">
-            <h3 className="text-2xl font-bold mb-6 text-amber-500">Why Choose Us</h3>
-            <ul className="space-y-4">
-              {features.map((feature, index) => (
-                <li key={index} className="flex items-start">
-                  <CheckCircle className="w-6 h-6 text-amber-500 mr-3 flex-shrink-0" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+          
+          <div className="relative">
+             <div className="absolute -top-4 -left-4 w-24 h-24 bg-amber-100 rounded-full z-0"></div>
+             <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-slate-100 rounded-full z-0"></div>
+             <img 
+               src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+               alt="Team at work" 
+               loading="lazy"
+               className="relative z-10 rounded-xl shadow-2xl w-full object-cover h-[500px]"
+             />
           </div>
         </div>
       </div>
@@ -205,81 +214,37 @@ const About = () => {
   );
 };
 
-const ServiceCard: React.FC<{ title: string, items: string[], icon: any, colorClass: string }> = ({ title, items, icon: Icon, colorClass }) => (
-  <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100">
-    <div className={`p-6 ${colorClass} text-white`}>
-      <Icon className="w-10 h-10 mb-4" />
-      <h3 className="text-xl font-bold">{title}</h3>
-    </div>
-    <div className="p-6">
-      <ul className="space-y-2">
-        {items.map((item, idx) => (
-          <li key={idx} className="flex items-start text-gray-600 text-sm">
-            <ChevronRight className="w-4 h-4 text-amber-500 mr-2 mt-1 flex-shrink-0" />
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-);
-
 const Services = () => {
   const services = [
     {
-      title: "Logistics & Freight",
-      icon: Truck,
-      colorClass: "bg-blue-600",
-      items: [
-        "International Freight Forwarding",
-        "Cargo Handling",
-        "Clearing & Shipping Agent",
-        "Customs Clearing Agents",
-        "Container Transportation",
-        "Bond & Warehousing Coordination"
-      ]
+      title: "Customs Clearing",
+      icon: <FileText size={40} />,
+      description: "Expert handling of customs documentation, tax clearance, and compliance for imports and exports."
+    },
+    {
+      title: "Freight Forwarding",
+      icon: <Ship size={40} />,
+      description: "Sea, air, and land freight solutions ensuring your cargo reaches its destination safely and on time."
+    },
+    {
+      title: "Transportation",
+      icon: <Truck size={40} />,
+      description: "Reliable fleet services for local and regional transport of goods, containers, and heavy machinery."
+    },
+    {
+      title: "Car Import & Registration",
+      icon: <Car size={40} />,
+      description: "Complete assistance with vehicle importing, URA registration, and number plate acquisition."
     },
     {
       title: "Business Consultancy",
-      icon: Briefcase,
-      colorClass: "bg-slate-700",
-      items: [
-        "Business Plans",
-        "Company Profiling",
-        "Management Training (MTAC)",
-        "Business Advisory Services"
-      ]
+      icon: <Briefcase size={40} />,
+      description: "Strategic advice for startups and companies on registration, compliance, and growth in Uganda."
     },
     {
-      title: "Registration & Legal",
-      icon: FileText,
-      colorClass: "bg-emerald-600",
-      items: [
-        "New Company Registration",
-        "TIN Number Application",
-        "Trading License Assistance"
-      ]
-    },
-    {
-      title: "Printing & Branding",
-      icon: PenTool,
-      colorClass: "bg-purple-600",
-      items: [
-        "Banners, Flyers, Posters",
-        "Corporate Branding",
-        "Company Profiles",
-        "Vehicle Branding",
-        "ID Cards & Business Cards"
-      ]
-    },
-    {
-      title: "Other Services",
-      icon: Globe,
-      colorClass: "bg-amber-600",
-      items: [
-        "Driving Permit Processing",
-        "General Business Support"
-      ]
+      title: "Procurement & Supply",
+      icon: <Globe size={40} />,
+      description: "Sourcing and supplying general merchandise and specialized equipment for various industries."
     }
   ];
 
@@ -289,14 +254,21 @@ const Services = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Services</h2>
           <div className="w-20 h-1 bg-amber-500 mx-auto mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Comprehensive solutions designed to move your business forward.
-          </p>
+          <p className="text-gray-600 max-w-2xl mx-auto">Comprehensive logistics and business solutions tailored to your specific needs.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+            <div key={index} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 border-b-4 border-transparent hover:border-amber-500 group">
+              <div className="text-amber-500 mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+              <p className="text-gray-600 mb-4">{service.description}</p>
+              <a href="#contact" className="inline-flex items-center text-slate-700 font-semibold hover:text-amber-600 transition-colors">
+                Learn more <ChevronRight size={16} className="ml-1" />
+              </a>
+            </div>
           ))}
         </div>
       </div>
@@ -306,117 +278,30 @@ const Services = () => {
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="py-20 bg-white">
+    <section id="portfolio" className="py-20 bg-slate-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Our Portfolio</h2>
-          <div className="w-20 h-1 bg-amber-500 mx-auto mb-6"></div>
-          <p className="text-gray-600">Showcasing our capabilities in heavy transport and vehicle importation.</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h2>
+          <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
         </div>
 
-        {/* Category 1: Long Vehicles */}
-        <div className="mb-16">
-          <div className="flex items-center mb-8">
-            <Truck className="w-8 h-8 text-amber-500 mr-3" />
-            <h3 className="text-2xl font-bold text-slate-800">Long Vehicles & Containers</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-             {[
-               "https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&q=80&w=500",
-               "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=500",
-               "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=500",
-               "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=500"
-             ].map((src, i) => (
-               <div key={i} className="group relative overflow-hidden rounded-lg h-48">
-                 <img loading="lazy" src={src} alt="Truck Logistics" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
-                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                   <span className="text-white font-semibold">Logistics</span>
-                 </div>
-               </div>
-             ))}
-          </div>
-        </div>
-
-        {/* Category 2: Latest Cars */}
-        <div>
-          <div className="flex items-center mb-8">
-            <Car className="w-8 h-8 text-amber-500 mr-3" />
-            <h3 className="text-2xl font-bold text-slate-800">Vehicle Importation</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-slate-50 rounded-lg p-4 text-center hover:shadow-lg transition-shadow">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=600" alt="Luxury Car - Toyota Land Cruiser" className="w-full h-48 object-cover rounded-md mb-4" />
-              <h4 className="font-bold text-lg">Toyota Land Cruiser</h4>
-              <p className="text-sm text-gray-500">Clearance & Delivery</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="p-6">
+                <div className="text-5xl font-bold text-amber-500 mb-2">500+</div>
+                <div className="text-gray-300">Happy Clients</div>
             </div>
-            <div className="bg-slate-50 rounded-lg p-4 text-center hover:shadow-lg transition-shadow">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=600" alt="Luxury Car - Mercedes Benz" className="w-full h-48 object-cover rounded-md mb-4" />
-              <h4 className="font-bold text-lg">Mercedes Benz</h4>
-              <p className="text-sm text-gray-500">Import Services</p>
+            <div className="p-6">
+                <div className="text-5xl font-bold text-amber-500 mb-2">1200+</div>
+                <div className="text-gray-300">Shipments Delivered</div>
             </div>
-            <div className="bg-slate-50 rounded-lg p-4 text-center hover:shadow-lg transition-shadow">
-              <img loading="lazy" src="https://images.unsplash.com/photo-1555215695-3004980adade?auto=format&fit=crop&q=80&w=600" alt="Luxury Car - BMW X Series" className="w-full h-48 object-cover rounded-md mb-4" />
-              <h4 className="font-bold text-lg">BMW X Series</h4>
-              <p className="text-sm text-gray-500">Freight Forwarding</p>
+            <div className="p-6">
+                <div className="text-5xl font-bold text-amber-500 mb-2">10+</div>
+                <div className="text-gray-300">Years Experience</div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const TeamMember: React.FC<{ name: string, role: string, bio: string, image: string }> = ({ name, role, bio, image }) => (
-  <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-    <div className="relative h-64 overflow-hidden">
-      <img loading="lazy" src={image} alt={name} className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-500" />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
-      <div className="absolute bottom-4 left-4 text-white">
-        <h4 className="text-xl font-bold">{name}</h4>
-        <p className="text-amber-400 font-medium">{role}</p>
-      </div>
-    </div>
-    <div className="p-6">
-      <p className="text-gray-600 text-sm leading-relaxed mb-4">{bio}</p>
-      <div className="flex space-x-3">
-        <button className="p-2 bg-slate-100 rounded-full hover:bg-amber-500 hover:text-white transition-colors">
-          <Mail size={16} />
-        </button>
-        <button className="p-2 bg-slate-100 rounded-full hover:bg-amber-500 hover:text-white transition-colors">
-          <Phone size={16} />
-        </button>
-      </div>
-    </div>
-  </div>
-);
-
-const Team = () => {
-  const team = [
-    {
-      name: "Onyai Peter",
-      role: "Managing Director",
-      bio: "The visionary leader behind EKOO BUSINESS CONSULT. With over 15 years in logistics and business management, Peter ensures every client's dream works through strategic planning and efficient execution.",
-      image: "https://storage.googleapis.com/aistudio-cms-uv2-prod/a64a377d-78cf-43c2-80cf-f3e1a0d8ec8c.jpg"
-    }
-  ];
-
-  return (
-    <section id="team" className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Meet Our Team</h2>
-          <div className="w-20 h-1 bg-amber-500 mx-auto mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Our dedicated team of professionals working tirelessly to make your dream work.
-          </p>
-        </div>
-
-        <div className="flex justify-center">
-          {team.map((member, index) => (
-             <div key={index} className="w-full max-w-md">
-                <TeamMember {...member} />
-             </div>
-          ))}
+            <div className="p-6">
+                <div className="text-5xl font-bold text-amber-500 mb-2">24/7</div>
+                <div className="text-gray-300">Support Available</div>
+            </div>
         </div>
       </div>
     </section>
@@ -424,159 +309,215 @@ const Team = () => {
 };
 
 const Contact = () => {
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  
+  const [status, setStatus] = useState({
+    submitting: false,
+    succeeded: false,
+    error: null
+  });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormStatus('submitting');
-    
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    
+    setStatus({ submitting: true, succeeded: false, error: null });
+
+    const data = new FormData();
+    Object.keys(formData).forEach(key => data.append(key, formData[key]));
+
     try {
       const response = await fetch("https://formspree.io/f/xpweznbz", {
         method: "POST",
-        body: formData,
+        body: data,
         headers: {
           'Accept': 'application/json'
         }
       });
-      
+
       if (response.ok) {
-        setFormStatus('success');
-        form.reset();
+        setStatus({ submitting: false, succeeded: true, error: null });
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       } else {
-        setFormStatus('error');
+        const result = await response.json();
+        setStatus({ submitting: false, succeeded: false, error: result.errors ? result.errors.map(err => err.message).join(', ') : "There was a problem submitting your form" });
       }
-    } catch (err) {
-      setFormStatus('error');
+    } catch (error) {
+      setStatus({ submitting: false, succeeded: false, error: "Network error, please try again later." });
     }
   };
 
   return (
-    <section id="contact" className="py-20 bg-slate-900 text-white">
+    <section id="contact" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
-            <p className="text-gray-300 mb-8 text-lg">
-              Ready to streamline your logistics or register your business? Contact us today for a quote or consultation.
-            </p>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Contact Us</h2>
+          <div className="w-20 h-1 bg-amber-500 mx-auto mb-6"></div>
+          <p className="text-gray-600">Get in touch for a quote or consultation today.</p>
+        </div>
 
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <Users className="w-6 h-6 text-amber-500 mt-1 mr-4" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="bg-slate-50 p-8 rounded-xl shadow-lg">
+            <h3 className="text-2xl font-bold text-slate-800 mb-6">Send us a Message</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <p className="text-sm text-gray-400">Contact Person</p>
-                  <p className="text-lg font-bold">ONYAI PETER (Managing Director)</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <Phone className="w-6 h-6 text-amber-500 mt-1 mr-4" />
-                <div>
-                  <p className="text-sm text-gray-400">Phone Numbers</p>
-                  <div className="flex items-center flex-wrap gap-2">
-                    <a href="tel:+256703135573" className="text-lg hover:text-amber-500 transition-colors">+256 703 135573</a>
-                    <a 
-                      href="https://wa.me/256703135573" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-[#25D366] bg-green-100 hover:bg-green-200 px-2 py-0.5 rounded text-xs font-bold transition-colors shadow-sm"
-                    >
-                      <MessageCircle size={14} className="mr-1" fill="currentColor" /> WhatsApp
-                    </a>
-                  </div>
-                  <a href="tel:+256787672050" className="text-lg block hover:text-amber-500 transition-colors">+256 787 672050</a>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <Mail className="w-6 h-6 text-amber-500 mt-1 mr-4" />
-                <div>
-                  <p className="text-sm text-gray-400">Emails</p>
-                  <a href="mailto:ekoolbusiness@gmail.com" className="text-lg block hover:text-amber-500 transition-colors">ekoolbusiness@gmail.com</a>
-                  <a href="mailto:onyaipeter@gmail.com" className="text-lg block hover:text-amber-500 transition-colors">onyaipeter@gmail.com</a>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <MapPin className="w-6 h-6 text-amber-500 mt-1 mr-4" />
-                <div>
-                  <p className="text-sm text-gray-400">Address</p>
-                  <p className="text-lg">Plot No. M175, Jinja Road</p>
-                  <p className="text-gray-300">Management Training & Advisory Centre (MTAC)</p>
-                  <p className="text-gray-300">1st Floor, Office No. D.2</p>
-                  <p className="text-gray-300">P.O. Box 26693 Kampala (U)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-2xl p-8 text-slate-900 shadow-2xl">
-            <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <input type="text" name="name" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none" placeholder="Your Name" required disabled={formStatus === 'submitting'} />
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all"
+                    placeholder="John Doe"
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                  <input type="tel" name="phone" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none" placeholder="+256..." disabled={formStatus === 'submitting'} />
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all"
+                    placeholder="john@example.com"
+                  />
                 </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" name="email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none" placeholder="example@email.com" required disabled={formStatus === 'submitting'} />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Service Interest</label>
-                <select name="service" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none" disabled={formStatus === 'submitting'}>
-                  <option value="Logistics & Shipping">Logistics & Shipping</option>
-                  <option value="Business Consultancy">Business Consultancy</option>
-                  <option value="Company Registration">Company Registration</option>
-                  <option value="Branding & Printing">Branding & Printing</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea name="message" rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none" placeholder="How can we help you?" required disabled={formStatus === 'submitting'}></textarea>
               </div>
               
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all"
+                    placeholder="+256 700 000000"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Service Needed</label>
+                  <select 
+                    id="subject" 
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all"
+                  >
+                    <option value="">Select a service</option>
+                    <option value="Customs Clearing">Customs Clearing</option>
+                    <option value="Freight Forwarding">Freight Forwarding</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Business Consultancy">Business Consultancy</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <textarea 
+                  id="message" 
+                  name="message"
+                  required
+                  rows={4} 
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all"
+                  placeholder="Tell us about your cargo or business needs..."
+                ></textarea>
+              </div>
+
               <button 
                 type="submit" 
-                disabled={formStatus === 'submitting'}
-                className="w-full py-3 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-slate-900 font-bold rounded-lg transition-colors shadow-md flex items-center justify-center gap-2"
+                disabled={status.submitting}
+                className="w-full py-4 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded-lg transition-all shadow-md hover:shadow-lg flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {formStatus === 'submitting' ? (
+                {status.submitting ? (
                   <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    Sending...
+                    <Loader2 className="animate-spin mr-2" /> Sending...
                   </>
                 ) : (
-                  'Send Message'
+                  "Send Message"
                 )}
               </button>
-              
-              {formStatus === 'success' && (
-                <div className="p-4 bg-green-100 text-green-700 rounded-lg flex items-center gap-2 animate-in fade-in duration-300">
-                  <CheckCircle className="w-5 h-5" />
-                  <span>Message sent successfully! We will contact you soon.</span>
+
+              {status.succeeded && (
+                <div className="p-4 bg-green-100 text-green-700 rounded-lg text-center">
+                  Thank you! Your message has been sent successfully. We will contact you soon.
                 </div>
               )}
               
-              {formStatus === 'error' && (
-                <div className="p-4 bg-red-100 text-red-700 rounded-lg flex items-center gap-2 animate-in fade-in duration-300">
-                  <X className="w-5 h-5" />
-                  <span>Something went wrong. Please try again later.</span>
+              {status.error && (
+                <div className="p-4 bg-red-100 text-red-700 rounded-lg text-center">
+                  {status.error}
                 </div>
               )}
             </form>
           </div>
 
+          <div className="space-y-8 flex flex-col justify-center">
+            <div className="flex items-start space-x-4">
+              <div className="bg-amber-100 p-3 rounded-full text-amber-600">
+                <MapPin size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-lg text-slate-900">Our Location</h4>
+                <p className="text-gray-600">Kampala, Uganda</p>
+                <p className="text-gray-500 text-sm">Main Business District</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <div className="bg-amber-100 p-3 rounded-full text-amber-600">
+                <Mail size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-lg text-slate-900">Email Us</h4>
+                <p className="text-gray-600">info@ekoologistics.com</p>
+                <p className="text-gray-500 text-sm">We reply within 24 hours</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4">
+              <div className="bg-amber-100 p-3 rounded-full text-amber-600">
+                <Phone size={24} />
+              </div>
+              <div>
+                <h4 className="font-bold text-lg text-slate-900">Call Us</h4>
+                <p className="text-gray-600">+256 700 000 000</p>
+                <p className="text-gray-500 text-sm">Mon - Sat, 8am - 6pm</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-900 p-8 rounded-xl text-white mt-8">
+              <h4 className="font-bold text-xl mb-4">Ready to start?</h4>
+              <p className="mb-6 text-gray-300">Contact us today for a free quote on your shipment or business registration needs.</p>
+              <a href="tel:+256700000000" className="flex items-center text-amber-500 font-bold hover:text-amber-400">
+                <Phone size={20} className="mr-2" /> Call Now
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -585,51 +526,86 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-950 text-gray-400 py-8 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-        <div className="mb-4 md:mb-0 flex items-center gap-2">
-            <Logo className="h-10 w-auto" />
-          <span className="text-xl font-bold text-white">EKOO<span className="text-amber-500">BUSINESS</span></span>
+    <footer className="bg-slate-900 text-white pt-16 pb-8 border-t border-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <div>
+            <div className="flex items-center gap-2 mb-6">
+              <Logo className="h-12 w-auto" />
+              <div className="font-bold text-lg leading-tight">
+                EKOO<br/><span className="text-amber-500">BUSINESS</span>
+              </div>
+            </div>
+            <p className="text-gray-400 mb-6">
+              Your trusted partner in logistics, freight forwarding, and business consultancy in Uganda.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-white">Quick Links</h4>
+            <ul className="space-y-3">
+              <li><a href="#home" className="text-gray-400 hover:text-amber-500 transition-colors">Home</a></li>
+              <li><a href="#about" className="text-gray-400 hover:text-amber-500 transition-colors">About Us</a></li>
+              <li><a href="#services" className="text-gray-400 hover:text-amber-500 transition-colors">Services</a></li>
+              <li><a href="#contact" className="text-gray-400 hover:text-amber-500 transition-colors">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-white">Services</h4>
+            <ul className="space-y-3">
+              <li className="text-gray-400">Customs Clearing</li>
+              <li className="text-gray-400">Freight Forwarding</li>
+              <li className="text-gray-400">Transportation</li>
+              <li className="text-gray-400">Business Consultancy</li>
+            </ul>
+          </div>
         </div>
-        <p className="text-sm mt-1">© {new Date().getFullYear()} EKOO Business Consult (U) Ltd. All rights reserved.</p>
-        <div className="flex space-x-6 mt-4 md:mt-0">
-          <a href="#" className="hover:text-amber-500 transition-colors">Facebook</a>
-          <a href="#" className="hover:text-amber-500 transition-colors">Twitter</a>
-          <a href="#" className="hover:text-amber-500 transition-colors">LinkedIn</a>
+        
+        <div className="border-t border-slate-800 pt-8 text-center text-gray-500">
+           <p>© 2024 Ekoo Logistics & Freight Services — Providing freight, delivery, and customs clearing services in Uganda.</p>
         </div>
       </div>
     </footer>
   );
 };
 
-const FloatingWhatsApp = () => (
-  <a
-    href="https://wa.me/256703135573"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="fixed bottom-6 right-6 bg-amber-500 text-slate-900 px-8 py-3.5 rounded-full shadow-lg hover:bg-amber-400 transition-all duration-300 z-50 flex items-center gap-3 hover:-translate-y-1 hover:shadow-xl font-bold text-lg"
-    aria-label="Chat on WhatsApp"
-  >
-    <MessageCircle className="w-6 h-6 stroke-[2.5px]" />
-    <span>Chat on WhatsApp</span>
-  </a>
+const SEOContent = () => (
+  <section className="bg-slate-50 py-12 border-t border-slate-200">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-slate">
+      <h2 className="text-2xl font-bold text-slate-900 mb-4">Logistics & Freight Services in Uganda</h2>
+      <p className="text-gray-600 mb-4">
+        Ekoo Logistics provides fast, reliable, and affordable logistics and freight forwarding services across Uganda.
+        We specialize in customs clearing, shipping, delivery, and transportation solutions for individuals and businesses.
+        Our goal is to make your import, export, and delivery process smooth and stress-free by offering professional support from start to finish.
+      </p>
+      
+      <h3 className="text-xl font-bold text-slate-900 mb-3">Why Choose Ekoo Logistics?</h3>
+      <ul className="list-disc pl-5 text-gray-600 space-y-2">
+        <li>Fast delivery and shipping services</li>
+        <li>Affordable customs clearing and documentation</li>
+        <li>Safe and secure transport</li>
+        <li>Professional 24/7 customer support</li>
+        <li>Trusted by businesses and individuals across Uganda</li>
+      </ul>
+    </div>
+  </section>
 );
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-50">
       <Navbar />
       <Hero />
       <About />
       <Services />
       <Portfolio />
-      <Team />
       <Contact />
+      <SEOContent />
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 };
 
-const root = createRoot(document.getElementById('root')!);
+const root = createRoot(document.getElementById('root'));
 root.render(<App />);
