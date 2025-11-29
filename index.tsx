@@ -71,7 +71,7 @@ const Navbar = () => {
               EKOO<br/><span className="text-amber-500">BUSINESS</span>
             </div>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center">
             <div className="ml-10 flex items-baseline space-x-8">
               {navLinks.map((link) => (
                 <a
@@ -82,6 +82,17 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
+            </div>
+            {/* Phone Number in Navbar */}
+            <div className="ml-8 pl-8 border-l border-slate-700 flex flex-col items-start justify-center gap-1">
+              <a href="tel:+256787672050" className="flex items-center gap-2 text-white hover:text-amber-500 transition-colors">
+                  <Phone size={16} />
+                  <span className="font-bold text-sm whitespace-nowrap">+256 787 672 050</span>
+              </a>
+              <a href="https://wa.me/256703135573" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors">
+                  <MessageCircle size={16} />
+                  <span className="font-bold text-sm whitespace-nowrap">+256 703 135 573</span>
+              </a>
             </div>
           </div>
           <div className="-mr-2 flex md:hidden">
@@ -107,6 +118,14 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            <div className="border-t border-slate-700 pt-3 mt-3 px-3 space-y-2">
+                <a href="tel:+256787672050" className="flex items-center gap-3 text-amber-500 font-bold">
+                  <Phone size={20} /> +256 787 672 050
+                </a>
+                <a href="https://wa.me/256703135573" className="flex items-center gap-3 text-green-400 font-bold">
+                  <MessageCircle size={20} /> +256 703 135 573
+                </a>
+            </div>
           </div>
         </div>
       )}
@@ -308,6 +327,63 @@ const Portfolio = () => {
   );
 };
 
+const Team = () => {
+  return (
+    <section id="team" className="py-20 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Meet Our Team</h2>
+          <div className="w-20 h-1 bg-amber-500 mx-auto mb-6"></div>
+          <p className="text-gray-600">The dedicated professionals behind our success.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Member 1 - Management */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
+            <div className="h-72 overflow-hidden bg-white flex items-center justify-center p-8 border-b border-slate-100">
+               <Logo className="w-full h-full transform group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-bold text-slate-900">ONYAI PETER</h3>
+              <p className="text-amber-600 font-medium">MANAGING DIRECTOR</p>
+            </div>
+          </div>
+
+          {/* Member 2 - Operations */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
+            <div className="h-72 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Operations" 
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-bold text-slate-900">Operations Manager</h3>
+              <p className="text-amber-600 font-medium">Logistics & Supply</p>
+            </div>
+          </div>
+
+          {/* Member 3 - Clearing */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
+            <div className="h-72 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Clearing Agent" 
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="text-xl font-bold text-slate-900">Field Team</h3>
+              <p className="text-amber-600 font-medium">Senior Clearing Agent</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -412,7 +488,7 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all"
-                    placeholder="+256 700 000000"
+                    placeholder="+256 787 672050"
                   />
                 </div>
                 <div>
@@ -483,8 +559,9 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="font-bold text-lg text-slate-900">Our Location</h4>
-                <p className="text-gray-600">Kampala, Uganda</p>
-                <p className="text-gray-500 text-sm">Main Business District</p>
+                <p className="text-gray-600">Plot No M175 Jinja Road</p>
+                <p className="text-gray-600">Management Training & Advisory Centre (MTAC)</p>
+                <p className="text-gray-500 text-sm">P.O BOX 26693 KAMPALA (U)</p>
               </div>
             </div>
 
@@ -494,8 +571,11 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="font-bold text-lg text-slate-900">Email Us</h4>
-                <p className="text-gray-600">info@ekoologistics.com</p>
-                <p className="text-gray-500 text-sm">We reply within 24 hours</p>
+                <div className="flex flex-col gap-1">
+                   <a href="mailto:ekoobusiness@gmail.com" className="text-gray-600 hover:text-amber-600 transition-colors">ekoobusiness@gmail.com</a>
+                   <a href="mailto:onyaipeter@gmail.com" className="text-gray-600 hover:text-amber-600 transition-colors">onyaipeter@gmail.com</a>
+                </div>
+                <p className="text-gray-500 text-sm mt-1">We reply within 24 hours</p>
               </div>
             </div>
 
@@ -504,18 +584,28 @@ const Contact = () => {
                 <Phone size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-lg text-slate-900">Call Us</h4>
-                <p className="text-gray-600">+256 700 000 000</p>
-                <p className="text-gray-500 text-sm">Mon - Sat, 8am - 6pm</p>
+                <h4 className="font-bold text-lg text-slate-900">Contact Info</h4>
+                <div className="flex flex-col gap-1">
+                  <a href="tel:+256787672050" className="text-gray-600 hover:text-amber-600 transition-colors">Calls: +256 787 672 050</a>
+                  <a href="https://wa.me/256703135573" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 font-medium flex items-center gap-1 transition-colors">
+                    <MessageCircle size={16} /> WhatsApp: +256 703 135 573
+                  </a>
+                </div>
+                <p className="text-gray-500 text-sm mt-1">Mon - Sat, 8am - 6pm</p>
               </div>
             </div>
 
             <div className="bg-slate-900 p-8 rounded-xl text-white mt-8">
               <h4 className="font-bold text-xl mb-4">Ready to start?</h4>
               <p className="mb-6 text-gray-300">Contact us today for a free quote on your shipment or business registration needs.</p>
-              <a href="tel:+256700000000" className="flex items-center text-amber-500 font-bold hover:text-amber-400">
-                <Phone size={20} className="mr-2" /> Call Now
-              </a>
+              <div className="flex flex-col gap-3">
+                <a href="tel:+256787672050" className="flex items-center text-amber-500 font-bold hover:text-amber-400">
+                  <Phone size={20} className="mr-2" /> Call Now
+                </a>
+                <a href="https://wa.me/256703135573" className="flex items-center text-green-400 font-bold hover:text-green-300">
+                  <MessageCircle size={20} className="mr-2" /> WhatsApp Us
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -539,6 +629,11 @@ const Footer = () => {
             <p className="text-gray-400 mb-6">
               Your trusted partner in logistics, freight forwarding, and business consultancy in Uganda.
             </p>
+            <div className="text-sm text-gray-500 space-y-1">
+                <p>Plot No M175 Jinja Road</p>
+                <p>Management Training & Advisory Centre (MTAC)</p>
+                <p>P.O BOX 26693 KAMPALA (U)</p>
+            </div>
           </div>
           
           <div>
@@ -600,6 +695,7 @@ const App = () => {
       <About />
       <Services />
       <Portfolio />
+      <Team />
       <Contact />
       <SEOContent />
       <Footer />
