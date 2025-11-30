@@ -374,13 +374,12 @@ const Portfolio = () => {
 };
 
 const Team = () => {
-  // IMAGE CONFIGURATION: 
-  // IMPORTANT: You must rename your uploaded image files to match these names exactly
-  // and place them in the public folder for them to show up.
+  // Configured with high-quality stock images representing diverse teams (male and female)
   const teamPhotos = {
-    manager: "onyai-peter.jpg",      // The photo of Onyai Peter in orange shirt
-    operations: "team-ops.jpg",      // The photo of the two men
-    field: "team-field.jpg"          // The photo with the children
+    // Operations: Professional group team (Mixed male/female)
+    operations: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80",
+    // Field: Professional outdoor/logistics team (Mixed male/female)
+    field: "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
   };
 
   return (
@@ -393,31 +392,24 @@ const Team = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Member 1 - Management */}
+          {/* Member 1 - Management (Company Logo) */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
-            <div className="h-80 overflow-hidden bg-slate-200">
-               {/* Using the config variable for easier updates */}
-               <img 
-                 src={teamPhotos.manager}
-                 alt="ONYAI PETER - Managing Director (Orange Shirt)" 
-                 className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-500"
-               />
+            <div className="h-80 overflow-hidden bg-slate-100 flex items-center justify-center">
+               {/* Displaying Company Logo as requested */}
+               <Logo className="w-64 h-64 drop-shadow-lg transform group-hover:scale-105 transition-transform duration-500" />
             </div>
-            <div className="p-6 text-center relative">
-               <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full border-4 border-white bg-white shadow-md flex items-center justify-center overflow-hidden">
-                   <Logo className="w-16 h-16" />
-               </div>
-              <h3 className="text-xl font-bold text-slate-900 mt-8">ONYAI PETER</h3>
+            <div className="p-6 text-center border-t border-slate-100">
+              <h3 className="text-xl font-bold text-slate-900 mt-2">ONYAI PETER</h3>
               <p className="text-amber-600 font-medium">MANAGING DIRECTOR</p>
             </div>
           </div>
 
-          {/* Member 2 - Operations */}
+          {/* Member 2 - Operations (Mixed Team) */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
             <div className="h-80 overflow-hidden">
               <img 
                 src={teamPhotos.operations}
-                alt="Operations Team (Two Men)" 
+                alt="Operations Team (Male and Female Professionals)" 
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
             </div>
@@ -427,12 +419,12 @@ const Team = () => {
             </div>
           </div>
 
-          {/* Member 3 - Clearing */}
+          {/* Member 3 - Field (Mixed Team) */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
             <div className="h-80 overflow-hidden">
               <img 
                 src={teamPhotos.field}
-                alt="Field Team (Photo with Children)" 
+                alt="Field Team (Mixed Professional Team)" 
                 className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
               />
             </div>
